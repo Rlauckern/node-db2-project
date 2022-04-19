@@ -1,18 +1,20 @@
-exports.up = function (knex) {
-  // DO YOUR MAGIC
+exports.up = function (knex, Promise) {
   return knex.schema.createTable('cars', tbl => {
-    tbl.increments('id')
-    tbl.string('vin', 13).notNullable().unique()
-    tbl.string('make', 128).notNullable()
-    tbl.string('model', 128).notNullable()
-    tbl.integer('mileage').notNullable()
-    tbl.string('title', 128)
-    tbl.string('transmission', 128)
-    
+    tbl.increments();
+    tbl.string('make')
+      .notNullable();
+    tbl.string('model')
+      .notNullable();
+    tbl.integer('mileage')
+      .notNullable();
+    tbl.string('vin')
+      .notNullable()
+      .unique();
+    tbl.string('title');
+    tbl.string('transmission');
   })
 };
 
-exports.down = function (knex) {
-  // DO YOUR MAGIC
-  return knex.schema.dropTableIfExists('cars')
+exports.down = function (knex, Promise) {
+  return knex.schema.dropTableIfExists('cars');
 };
